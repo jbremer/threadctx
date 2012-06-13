@@ -177,7 +177,9 @@ int main(int argc, char *argv[])
                     // next instruction is located after this instruction
                     unsigned char *p2 = p + len;
 
-                    // volatile registers only
+                    // volatile registers only, when using blocking calls in
+                    // the thread we hijack (e.g. Sleep() is called), then
+                    // any non-volatile register is undefined..
                     if((rm != 3 && rm != 5 && rm != 6 && rm != 7) ||
                             (value != 3 && value != 5 && value != 6 &&
                             value != 7)) {
